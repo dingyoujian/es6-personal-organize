@@ -323,7 +323,7 @@ import * as profile from './profile';//模块的整体加载
 
 ...
 
-####class
+#### Class
 
 >基本语法
 
@@ -372,9 +372,47 @@ function bar(baz) {
 
 >Class继承
 
+...js
 
+class Point {
+  //父类
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
+  toString() {
+    //tostring方法
+  }
+}
+class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y); // 调用父类的constructor(x, y)
+    this.color = color;
+  }
 
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+}
+
+...
+
+>子类__proto__属性
+
+子类的`__proto__`属性，表示构造函数的继承，总是指向父类<br>
+
+作为一个对象，子类B的原型__proto__属性是父类A
+
+>子类prototype属性的__proto__属性
+
+子类`prototype`属性的`__proto__`属性，表示方法的继承，总是指向父类的prototype属性 <br>
+
+作为一个构造函数，子类B的原型prototype属性是父类的实例
+
+>Object.getPrototypeOf方法可以用来从子类上获取父类。
+
+>super()相当于XXX.prototype.constructor.call(this);
 
 
 
