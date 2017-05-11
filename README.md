@@ -284,5 +284,109 @@ target // {a:1, b:2, c:3}
 
 和数组遍历同理
 
+#### Module 语法
+
+>export命令
+
+规定的是对外的接口
+
+...js
+
+export class A {
+    //在import的时候需要加大括号
+}
+
+export default class B {
+    //在import的时候不需要大括号
+}
+
+function v1() {...}
+export {
+  v1 as streamV1, //重命名v1函数的对外接口
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+
+...
+
+>import命令
+
+...js
+
+import {firstName, lastName, year} from './profile';
+
+import { lastName as surname } from './profile'; //将输入的变量重命名
+
+import Profile from './profile'
+
+import * as profile from './profile';//模块的整体加载
+
+...
+
+####class
+
+>基本语法
+
+...js
+
+//定义类
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+}
+
+typeof Point // "function"
+Point === Point.prototype.constructor // true
+
+...
+
+1.类的内部定义方法是不可枚举的,且必须`new`才能使用
+
+2.类的所有实例共享一个原型对象，修改任意实例的`__protp__`会影响所有实例
+
+3.不存在变量提升，实例化前需先定义这个类
+
+4.私有方法 将私有方法的名字命名为一个Symbol值。
+
+...js
+
+class Widget {
+  foo (baz) {
+    bar.call(this, baz);
+  }
+
+  // ...
+}
+
+function bar(baz) {
+  return this.snaf = baz;
+}
+
+...
+
+>Class继承
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 以上为ES6常用基础语法,后续再加
 ---
